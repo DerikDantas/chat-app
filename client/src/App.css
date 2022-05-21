@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
+
 .App {
   width: 100vw;
   height: 100vh;
   background: #fff;
   color: #212121;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
   display: grid;
   place-items: center;
   background-color: #f1f1f1;
@@ -24,7 +26,17 @@ body {
   height: 100%;
 }
 
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+::-webkit-scrollbar{
+  width: 8px;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 20px;
+  background: #ddd;
+}
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+}
 
 .card-join {
   display: flex;
@@ -116,33 +128,32 @@ body {
   display: flex;
 }
 
-.chat-window .chat-body .message .message-content {
+.chat-window .chat-body .message .message-card {
   width: auto;
   height: auto;
   min-height: 40px;
   max-width: 120px;
+  min-width: 15em;
   background-color: #43a047;
   border-radius: 5px;
   color: white;
   display: flex;
-  align-items: center;
-  margin-right: 5px;
-  margin-left: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
+  flex-direction: column;
+  padding: 10px;
   overflow-wrap: break-word;
   word-break: break-word;
+  margin-bottom: 10px;
 }
 
 #you {
   justify-content: flex-end;
 }
 
-#you .message-content {
+#you .message-card {
   justify-content: flex-end;
 }
 
-#you .message-meta {
+#you {
   justify-content: flex-end;
   margin-left: 5px;
 }
@@ -151,22 +162,32 @@ body {
   justify-content: flex-start;
 }
 
-#other .message-content {
+#other .message-card {
   justify-content: flex-start;
   background-color: cornflowerblue;
 }
 
-#other .message-meta {
+#other {
   justify-content: flex-start;
   margin-right: 5px;
 }
 
-.message-meta #author {
-  margin-left: 10px;
+#author {
   font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.4em;
 }
 
-.chat-window .chat-body .message .message-meta {
+#message-content {
+  font-size: 1.2em;
+}
+
+#other #time {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.chat-window .chat-body .message {
   display: flex;
   font-size: 12px;
 }
@@ -187,7 +208,7 @@ body {
   border-right: 1px dotted #607d8b;
 
   outline: none;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .chat-window .chat-footer button {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import moment from "moment";
 
-function Chat({ socket, username, room }) {
+function Chat({ socket, userName, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
@@ -9,12 +10,9 @@ function Chat({ socket, username, room }) {
     if (currentMessage !== "") {
       const messageData = {
         room: room,
-        author: username,
+        author: userName,
         message: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: moment().format("DD/MM HH:mm"),
       };
 
       await socket.emit("send_message", messageData);
@@ -40,16 +38,16 @@ function Chat({ socket, username, room }) {
             return (
               <div
                 className="message"
-                id={username === messageContent.author ? "you" : "other"}
+                id={userName === messageContent.author ? "you" : "other"}
               >
                 <div>
-                  <div className="message-content">
-                    <p>{messageContent.message}</p>
+                  <div className="message-card">
+                    {userName !== messageContent.author && (
+                      <p id="author">{messageContent.author}</p>
+                    )}
+                    <p id="message-content">{messageContent.message}</p>
                   </div>
-                  <div className="message-meta">
-                    <p id="time">{messageContent.time}</p>
-                    <p id="author">{messageContent.author}</p>
-                  </div>
+                  <p id="time">{messageContent.time}</p>
                 </div>
               </div>
             );
@@ -60,7 +58,7 @@ function Chat({ socket, username, room }) {
         <input
           type="text"
           value={currentMessage}
-          placeholder="Hey..."
+          placeholder="Digite sua mensagem"
           onChange={(event) => {
             setCurrentMessage(event.target.value);
           }}

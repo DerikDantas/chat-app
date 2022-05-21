@@ -6,12 +6,12 @@ import Chat from "./Chat";
 const socket = io.connect("http://localhost:3001");
 
 function App() {
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [room, setRoom] = useState("");
   const [showChat, setShowChat] = useState(false);
 
   const joinRoom = () => {
-    if (name !== "" && room !== "") {
+    if (userName !== "" && room !== "") {
       socket.emit("join_room", room);
       setShowChat(true);
     }
@@ -26,7 +26,7 @@ function App() {
             type="text"
             placeholder="Ex. Lucas"
             onChange={(event) => {
-              setName(event.target.value);
+              setUserName(event.target.value);
             }}
           />
           <input
@@ -39,7 +39,7 @@ function App() {
           <button onClick={joinRoom}>ENTRAR</button>
         </div>
       ) : (
-        <Chat socket={socket} name={name} room={room} />
+        <Chat socket={socket} userName={userName} room={room} />
       )}
     </div>
   );
