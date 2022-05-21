@@ -8,10 +8,6 @@
 
 <br>
 
-<p align="center">
-  <img alt="Happy" src="./src/assets/images/mockup.png" width="100%">
-</p>
-
 ## 🚀 Tecnologias
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
